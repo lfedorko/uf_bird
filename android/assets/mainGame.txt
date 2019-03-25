@@ -1,0 +1,117 @@
+mainGame.png
+size: 408, 744
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg1
+  rotate: false
+  xy: 40, 24
+  size: 288, 360
+  orig: 288, 360
+  offset: 0, 0
+  index: -1
+blue1
+  rotate: false
+  xy: 238, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue2
+  rotate: false
+  xy: 272, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue3
+  rotate: false
+  xy: 340, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue4
+  rotate: false
+  xy: 374, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red1
+  rotate: false
+  xy: 306, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red2
+  rotate: false
+  xy: 34, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red3
+  rotate: false
+  xy: 0, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red4
+  rotate: false
+  xy: 170, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+spr_block
+  rotate: false
+  xy: 328, 24
+  size: 52, 720
+  orig: 52, 720
+  offset: 0, 0
+  index: -1
+spr_earth
+  rotate: false
+  xy: 16, 24
+  size: 24, 110
+  orig: 24, 110
+  offset: 0, 0
+  index: -1
+spr_point
+  rotate: false
+  xy: 0, 24
+  size: 16, 48
+  orig: 16, 48
+  offset: 0, 0
+  index: -1
+yellow1
+  rotate: false
+  xy: 68, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow2
+  rotate: false
+  xy: 136, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow3
+  rotate: false
+  xy: 102, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow4
+  rotate: false
+  xy: 204, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
