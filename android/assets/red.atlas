@@ -1,0 +1,33 @@
+mainGame.png
+size: 408, 744
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+blue1
+rotate: false
+xy: 238, 0
+size: 34, 24
+orig: 34, 24
+offset: 0, 0
+index: -1
+blue2
+rotate: false
+xy: 272, 0
+size: 34, 24
+orig: 34, 24
+offset: 0, 0
+index: -1
+blue3
+rotate: false
+xy: 340, 0
+size: 34, 24
+orig: 34, 24
+offset: 0, 0
+index: -1
+blue4
+rotate: false
+xy: 374, 0
+size: 34, 24
+orig: 34, 24
+offset: 0, 0
+index: -1

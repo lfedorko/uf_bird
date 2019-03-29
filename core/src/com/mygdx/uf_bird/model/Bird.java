@@ -2,8 +2,7 @@ package com.mygdx.uf_bird.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.SortedMap;
@@ -15,6 +14,11 @@ public class Bird implements Object{
     private float x;
     private float y;
     private float speed;
+    private TextureAtlas birdAtlas;
+    private Animation<TextureAtlas.AtlasRegion> birdAnimation;
+    private TextureRegion deadBird;
+    private float timePassed = 0;
+
 
     public void setRotate(float rotate) {
         this.rotate = rotate;
@@ -24,8 +28,7 @@ public class Bird implements Object{
     private float gravity;
     private boolean isDead;
     private Sound flying;
-    private TextureAtlas texture;
-    private Sprite bird;
+
 
 
     public boolean isDead() {
@@ -71,11 +74,13 @@ public class Bird implements Object{
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.isDead = false;
-        this.gravity = -3;
-        this.flying = Gdx.audio.newSound(Gdx.files.internal("wing.ogg"));//
-        // texture = new TextureAtlas(Gdx.files.internal("mainGame.txt"));
-        // bird = texture.createSprite('blue1');
+        isDead = false;
+        gravity = -3;
+        rotate = 0;
+        flying = Gdx.audio.newSound(Gdx.files.internal("wing.ogg"));//
+        birdAtlas = new TextureAtlas(Gdx.files.internal("red.atlas"));
+        birdAnimation = new Animation<TextureAtlas.AtlasRegion>(0.1f,  birdAtlas.getRegions());
+        deadBird = birdAtlas.findRegion("blue1");
     }
 
 
@@ -97,6 +102,24 @@ public class Bird implements Object{
             setY(100);
         }
 
+    }
+
+    public void draw(SpriteBatch batch) {
+
+        if (!isDead) {
+            timePassed += Gdx.graphics.getDeltaTime();
+            batch.draw(birdAnimation.getKeyFrame(timePassed, true), x, y);
+        }
+        else
+        {
+
+            setRotate(270);
+            batch.draw(deadBird, x, y,30,22,30,22,1,1,rotate);
+            timePassed = 0;
+
+        }
+    }
+    public void setAnimation(){
     }
 
     public void jump(){
