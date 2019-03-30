@@ -1,0 +1,124 @@
+gameMain.png
+size: 840, 360
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg1
+  rotate: false
+  xy: 0, 0
+  size: 288, 360
+  orig: 288, 360
+  offset: 0, 0
+  index: -1
+blue1
+  rotate: false
+  xy: 288, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue2
+  rotate: false
+  xy: 322, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue3
+  rotate: false
+  xy: 356, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+blue4
+  rotate: false
+  xy: 390, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red1
+  rotate: false
+  xy: 424, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red2
+  rotate: false
+  xy: 458, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red3
+  rotate: false
+  xy: 492, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+red4
+  rotate: false
+  xy: 526, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+spr_earth
+  rotate: false
+  xy: 560, 0
+  size: 24, 110
+  orig: 24, 110
+  offset: 0, 0
+  index: -1
+spr_point
+  rotate: false
+  xy: 584, 0
+  size: 16, 48
+  orig: 16, 48
+  offset: 0, 0
+  index: -1
+tile000
+  rotate: false
+  xy: 600, 0
+  size: 52, 360
+  orig: 52, 360
+  offset: 0, 0
+  index: -1
+tile001
+  rotate: false
+  xy: 652, 0
+  size: 52, 360
+  orig: 52, 360
+  offset: 0, 0
+  index: -1
+yellow1
+  rotate: false
+  xy: 704, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow2
+  rotate: false
+  xy: 738, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow3
+  rotate: false
+  xy: 772, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+yellow4
+  rotate: false
+  xy: 806, 0
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
