@@ -70,7 +70,7 @@ public class Bird implements Object{
 
     public Bird(float x, float y, float speed)
     {
-        this.collisionRectangle = new Rectangle(x, y, 30, 22);
+        this.collisionRectangle = new Rectangle(x, y, 2*34 * Gdx.graphics.getWidth()/ 400,  2*24 * Gdx.graphics.getHeight() / 800);
         this.x = x;
         this.y = y;
         this.speed = speed;
@@ -80,7 +80,6 @@ public class Bird implements Object{
         flying = Gdx.audio.newSound(Gdx.files.internal("wing.ogg"));//
         birdAtlas = new TextureAtlas(Gdx.files.internal("red.atlas"));
         birdAnimation = new Animation<TextureAtlas.AtlasRegion>(0.1f,  birdAtlas.getRegions());
-        deadBird = birdAtlas.findRegion("blue1");
     }
 
 
@@ -108,13 +107,13 @@ public class Bird implements Object{
 
         if (!isDead) {
             timePassed += Gdx.graphics.getDeltaTime();
-            batch.draw(birdAnimation.getKeyFrame(timePassed, true), x, y);
+            batch.draw(birdAnimation.getKeyFrame(timePassed, true), x, y, 2*34 * Gdx.graphics.getWidth()/ 400,2*24 * Gdx.graphics.getHeight() / 800);
         }
         else
         {
 
-            setRotate(270);
-            batch.draw(deadBird, x, y,30,22,30,22,1,1,rotate);
+//            setRotate(270);
+         //   batch.draw(deadBird, x, y,30,22,30,22,1,1,rotate);
             timePassed = 0;
 
         }

@@ -1,116 +1,116 @@
-mainGame.png
-size: 408, 744
+flappy.png
+size: 340, 521
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+base
+  rotate: false
+  xy: 0, 0
+  size: 336, 112
+  orig: 336, 112
+  offset: 0, 0
+  index: -1
+base_pipe
+  rotate: false
+  xy: 0, 112
+  size: 52, 143
+  orig: 52, 143
+  offset: 0, 0
+  index: -1
 bg1
   rotate: false
-  xy: 40, 24
+  xy: 52, 112
   size: 288, 360
   orig: 288, 360
   offset: 0, 0
   index: -1
 blue1
   rotate: false
-  xy: 238, 0
+  xy: 0, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 blue2
   rotate: false
-  xy: 272, 0
+  xy: 34, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 blue3
   rotate: false
-  xy: 340, 0
+  xy: 68, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 blue4
   rotate: false
-  xy: 374, 0
+  xy: 102, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
+cap
+  rotate: false
+  xy: 136, 472
+  size: 52, 25
+  orig: 52, 25
+  offset: 0, 0
+  index: -1
 red1
   rotate: false
-  xy: 306, 0
+  xy: 188, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 red2
   rotate: false
-  xy: 34, 0
+  xy: 222, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 red3
   rotate: false
-  xy: 0, 0
+  xy: 256, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 red4
   rotate: false
-  xy: 170, 0
+  xy: 290, 472
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
-spr_block
-  rotate: false
-  xy: 328, 24
-  size: 52, 720
-  orig: 52, 720
-  offset: 0, 0
-  index: -1
-spr_earth
-  rotate: false
-  xy: 16, 24
-  size: 24, 110
-  orig: 24, 110
-  offset: 0, 0
-  index: -1
-spr_point
-  rotate: false
-  xy: 0, 24
-  size: 16, 48
-  orig: 16, 48
-  offset: 0, 0
-  index: -1
 yellow1
   rotate: false
-  xy: 68, 0
+  xy: 0, 497
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 yellow2
   rotate: false
-  xy: 136, 0
+  xy: 34, 497
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 yellow3
   rotate: false
-  xy: 102, 0
+  xy: 68, 497
   size: 34, 24
   orig: 34, 24
   offset: 0, 0
   index: -1
 yellow4
   rotate: false
-  xy: 204, 0
+  xy: 102, 497
   size: 34, 24
   orig: 34, 24
   offset: 0, 0

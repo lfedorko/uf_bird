@@ -4,15 +4,14 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.uf_bird.GameMain;
-import com.mygdx.uf_bird.view.MainScreen;
+
 
 import java.awt.*;
 
 public class PipeCollector {
 
     private static final int AMOUNT_OF_PIPES = 4;
-    private static final float BEETWEEN_PAIR = 200;
+    private static final float BEETWEEN_PAIR = Gdx.graphics.getWidth() / 2f;
     private TextureAtlas texture;
 
     private Sound passed;
@@ -22,7 +21,7 @@ public class PipeCollector {
         passed = Gdx.audio.newSound(Gdx.files.internal("point.ogg"));
         for (int i = 0; i < AMOUNT_OF_PIPES; i++) {
             Pipe pipe = new Pipe();
-            pipe.setX(GameMain.W + i * BEETWEEN_PAIR + 100);
+            pipe.setX(Gdx.graphics.getWidth() + i * BEETWEEN_PAIR);
             pipes.add(pipe);
         }
     }
@@ -33,7 +32,7 @@ public class PipeCollector {
 
     public void update(){
         Pipe firstPipe = pipes.first();
-        if (firstPipe.getX() < GameMain.W / 200)
+        if (firstPipe.getX() < Gdx.graphics.getWidth() / 200)
             passed.play();
         if (firstPipe.getX() < (-firstPipe.getPipeWidth()) / 2) {
             pipes.removeValue(firstPipe, true);

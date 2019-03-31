@@ -1,24 +1,18 @@
 package com.mygdx.uf_bird.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
-import com.mygdx.uf_bird.GameMain;
 import com.mygdx.uf_bird.model.Bird;
-import com.badlogic.gdx.math.Circle;
+import com.mygdx.uf_bird.model.Ground;
 import com.mygdx.uf_bird.model.Pipe;
 import com.mygdx.uf_bird.model.PipeCollector;
-
-import java.util.TreeMap;
 
 public class MainScreen implements Screen {
 
@@ -27,25 +21,29 @@ public class MainScreen implements Screen {
     private SpriteBatch batch;
     private ShapeRenderer render;
     private Bird bird;
+    private Ground ground;
     private PipeCollector pipes;
     private  TextureRegion birdSprite;
     private  TextureRegion bgSprite;
     private  TextureRegion floorSprite;
-    private  TextureRegion topSprite;
-    private  TextureRegion botSprite;
+    private  TextureRegion base;
+    private  TextureRegion topPipeS;
+
+    private OrthographicCamera cam;
+    private ShapeRenderer shapeRenderer;
 
 //    переключение на другой экран
     @Override
     public void show() {
-
-        texture = new TextureAtlas(Gdx.files.internal("mainGame.txt"));
-        birdSprite = texture.findRegion("blue1");
+        texture = new TextureAtlas(Gdx.files.internal("flappy.txt"));
+//        birdSprite = texture.findRegion("blue1");
         bgSprite = texture.findRegion("bg1");
-        floorSprite = texture.findRegion("spr_earth");
-        topSprite = texture.findRegion("tile000");
-        botSprite = texture.findRegion("tile001");
+        floorSprite = texture.findRegion("base");
+        topPipeS = texture.findRegion("cap");
+        base = texture.findRegion("base_pipe");
         batch = new SpriteBatch();
-        bird = new Bird(100f,500f, 1.0f);
+        ground = new Ground();
+        bird = new Bird(200f,500f, 1.0f);
         pipes = new PipeCollector();
         render = new ShapeRenderer();
 
@@ -90,25 +88,35 @@ public class MainScreen implements Screen {
 
     private void renderDebug()
     {
-        Rectangle birdCircle = bird.getColissionRectangle();
-        render.begin(ShapeRenderer.ShapeType.Line);
-        render.rect(birdCircle.x, birdCircle.y, birdCircle.width, birdCircle.height);
+//        Rectangle birdCircle = bird.getColissionRectangle();
+//        render.begin(ShapeRenderer.ShapeType.Line);
+//        render.rect(birdCircle.x, birdCircle.y, birdCircle.width, birdCircle.height);
 
-        for (Pipe pipe : pipes.getPipes())
-        {
-
-            Rectangle bottomPipe = pipe.getBotomPipe();
-            Rectangle topPipe = pipe.getTopPipe();
-            render.rect(bottomPipe.x, bottomPipe.getY(),bottomPipe.getWidth(),bottomPipe.getHeight());
-            render.rect(topPipe.x, topPipe.getY(), topPipe.getWidth(), topPipe.getHeight());
-        }
-        render.end();
-        batch.begin();
 //        for (Pipe pipe : pipes.getPipes())
 //        {
-//            batch.draw(botSprite, pipe.getBotomPipe().x,pipe.getBotomPipe().getY(), pipe.getBotomPipe().getWidth(), pipe.getBotomPipe().getHeight());
+//
+//            Rectangle bottomPipe = pipe.getBotomPipe();
+//            Rectangle topPipe = pipe.getTopPipe();
+//           render.rect(bottomPipe.x, bottomPipe.getY(),bottomPipe.getWidth(),bottomPipe.getHeight());
+//            render.rect(topPipe.x, topPipe.getY(), topPipe.getWidth(), topPipe.getHeight());
 //        }
-//        batch.draw(bgSprite, 0,0, GameMain.W, GameMain.H);
+//        render.end();
+        batch.begin();
+
+        batch.draw(bgSprite, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        for (Pipe pipe : pipes.getPipes())
+        {
+            Rectangle botomPipe = pipe.getBotomPipe();
+            Rectangle topPipe = pipe.getTopPipe();
+
+            batch.draw(base, topPipe.x, topPipe.getY(), topPipe.getWidth(), topPipe.getHeight());
+            batch.draw(topPipeS, topPipe.x, topPipe.getY(), topPipe.getWidth(), 25);
+            batch.draw(base, botomPipe.x, botomPipe.y, botomPipe.width, botomPipe.height);
+            batch.draw(topPipeS, botomPipe.x, botomPipe.y + botomPipe.height - 24, botomPipe.width, 25);
+            batch.draw(floorSprite, ground.getFirstPos(), 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
+            batch.draw(floorSprite, ground.getSecondPos(), 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
+
+        }
         bird.draw(batch);
         batch.end();
 
@@ -122,12 +130,12 @@ public class MainScreen implements Screen {
         {
             pipes.update();
             bird.update();
-
+            ground.update();
             if (Gdx.input.justTouched())
                 bird.jump();
-            if (pipes.сheckOverlap(bird.getColissionRectangle()))
-                bird.setDead(true);
-//        if (bird.is_bird_dead())
+//            if (pipes.сheckOverlap(bird.getColissionRectangle()))
+//                bird.setDead(true);
+////        if (bird.is_bird_dead())
 //            bird.setY(0);
         }
         else
@@ -135,7 +143,9 @@ public class MainScreen implements Screen {
             bird.setRotate(270);
             bird.setGravity(-4);
             bird.update();
+
         }
+
     }
 
 
