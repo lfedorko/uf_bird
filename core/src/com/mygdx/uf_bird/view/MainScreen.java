@@ -9,10 +9,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.uf_bird.GameMain;
 import com.mygdx.uf_bird.model.Bird;
 import com.mygdx.uf_bird.model.Ground;
 import com.mygdx.uf_bird.model.Pipe;
 import com.mygdx.uf_bird.model.PipeCollector;
+
+import sun.applet.Main;
 
 public class MainScreen implements Screen {
 
@@ -23,16 +26,19 @@ public class MainScreen implements Screen {
     private Bird bird;
     private Ground ground;
     private PipeCollector pipes;
-    private  TextureRegion birdSprite;
     private  TextureRegion bgSprite;
     private  TextureRegion floorSprite;
     private  TextureRegion base;
     private  TextureRegion topPipeS;
-
-    private OrthographicCamera cam;
-    private ShapeRenderer shapeRenderer;
+    private GameMain game;
 
 //    переключение на другой экран
+
+
+    public MainScreen(GameMain game){
+        this.game = game;
+    }
+
     @Override
     public void show() {
         texture = new TextureAtlas(Gdx.files.internal("flappy.txt"));
@@ -43,7 +49,7 @@ public class MainScreen implements Screen {
         base = texture.findRegion("base_pipe");
         batch = new SpriteBatch();
         ground = new Ground();
-        bird = new Bird(200f,500f, 1.0f);
+        bird = new Bird(180f,500f, 1.0f);
         pipes = new PipeCollector();
         render = new ShapeRenderer();
 
@@ -126,24 +132,20 @@ public class MainScreen implements Screen {
     private void updateWorld(float delta)
     {
         //background update
-        if (!bird.isDead())
-        {
+        if (!bird.isDead()) {
             pipes.update();
             bird.update();
             ground.update();
             if (Gdx.input.justTouched())
                 bird.jump();
-//            if (pipes.сheckOverlap(bird.getColissionRectangle()))
-//                bird.setDead(true);
-////        if (bird.is_bird_dead())
-//            bird.setY(0);
+            if (pipes.сheckOverlap(bird.getColissionRectangle()))
+            {
+                bird.setDead(true);
+            }
         }
         else
         {
-            bird.setRotate(270);
-            bird.setGravity(-4);
             bird.update();
-
         }
 
     }

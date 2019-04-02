@@ -6,28 +6,28 @@ repeat: none
 yellow1
   rotate: false
   xy: 0, 497
-  size: 34, 24
-  orig: 34, 24
+  size: 33, 23
+  orig: 33, 23
   offset: 0, 0
   index: -1
 yellow2
   rotate: false
   xy: 34, 497
-  size: 34, 24
-  orig: 34, 24
+  size: 33, 23
+  orig: 33, 23
   offset: 0, 0
   index: -1
 yellow3
   rotate: false
   xy: 68, 497
-  size: 34, 24
-  orig: 34, 24
+  size: 33, 23
+  orig: 33, 23
   offset: 0, 0
   index: -1
 yellow4
   rotate: false
   xy: 102, 497
-  size: 34, 24
-  orig: 34, 24
+  size: 33, 23
+  orig: 33, 23
   offset: 0, 0
   index: -1
