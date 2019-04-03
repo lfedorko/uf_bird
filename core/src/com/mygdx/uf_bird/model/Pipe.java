@@ -67,7 +67,7 @@ public class Pipe implements Object{
             bottomH = generateHeight();
             collisionBottomPipe = new Rectangle(Gdx.graphics.getWidth() * 2, GROUND , PIPE_WIDTH, bottomH - GROUND);
             collisionTopPipe = new Rectangle(Gdx.graphics.getWidth() * 2, bottomH + SPACE + GROUND, PIPE_WIDTH, (Gdx.graphics.getHeight() - (SPACE + bottomH)));
-            System.out.println(collisionBottomPipe.getX()+ " "+ collisionBottomPipe.getY());
+//            System.out.println(collisionBottomPipe.getX()+ " "+ collisionBottomPipe.getY());
     }
 
     public  int generateHeight()

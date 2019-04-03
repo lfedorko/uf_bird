@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -31,6 +32,8 @@ public class MainScreen implements Screen {
     private  TextureRegion base;
     private  TextureRegion topPipeS;
     private GameMain game;
+    private BitmapFont font;
+
 
 //    переключение на другой экран
 
@@ -49,9 +52,10 @@ public class MainScreen implements Screen {
         base = texture.findRegion("base_pipe");
         batch = new SpriteBatch();
         ground = new Ground();
-        bird = new Bird(180f,500f, 1.0f);
+        bird = new Bird();
         pipes = new PipeCollector();
         render = new ShapeRenderer();
+        font = new BitmapFont(Gdx.files.internal("fonts/flappy.fnt"));
 
     }
     // время между кадрами в секунду
@@ -121,7 +125,7 @@ public class MainScreen implements Screen {
             batch.draw(topPipeS, botomPipe.x, botomPipe.y + botomPipe.height - 24, botomPipe.width, 25);
             batch.draw(floorSprite, ground.getFirstPos(), 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
             batch.draw(floorSprite, ground.getSecondPos(), 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
-
+            font.draw(batch, Integer.toString(pipes.getScore()),10 ,Gdx.graphics.getHeight() - 10);
         }
         bird.draw(batch);
         batch.end();

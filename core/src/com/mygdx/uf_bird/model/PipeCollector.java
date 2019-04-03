@@ -16,6 +16,7 @@ public class PipeCollector {
 
     private Sound passed;
     private Array<Pipe> pipes = new Array<Pipe>();
+    private int score;
 
     public PipeCollector(){
         passed = Gdx.audio.newSound(Gdx.files.internal("point.ogg"));
@@ -24,6 +25,7 @@ public class PipeCollector {
             pipe.setX(Gdx.graphics.getWidth() + i * BEETWEEN_PAIR);
             pipes.add(pipe);
         }
+        score = 0;
     }
 
     public Array<Pipe> getPipes() {
@@ -32,8 +34,10 @@ public class PipeCollector {
 
     public void update(){
         Pipe firstPipe = pipes.first();
-        if (firstPipe.getX() < Gdx.graphics.getWidth() / 200)
+        if (firstPipe.getX() == Gdx.graphics.getWidth() / 2) {
             passed.play();
+            setScore();
+        }
         if (firstPipe.getX() < (-firstPipe.getPipeWidth()) / 2) {
             pipes.removeValue(firstPipe, true);
             Pipe lastPipe = pipes.get(pipes.size - 1);
@@ -44,6 +48,16 @@ public class PipeCollector {
         for (Pipe pipe : pipes)
             pipe.update();
 
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore()
+    {
+        score +=1;
+        System.out.println(score);
     }
 
    public boolean сheckOverlap(Rectangle rect){

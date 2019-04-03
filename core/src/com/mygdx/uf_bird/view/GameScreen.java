@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,6 +22,7 @@ public class GameScreen implements Screen, InputProcessor {
     private GameMain game;
     private Button start;
     private Boolean isClicked;
+    private BitmapFont font;
 
 
     public GameScreen(GameMain game){
@@ -35,7 +37,7 @@ public class GameScreen implements Screen, InputProcessor {
         button = new Texture("playbtn.png");
         start = new Button(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/4, Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/4,"playbtn.png");
         isClicked = false;
-        Gdx.input.setInputProcessor(this);
+        font = new BitmapFont(Gdx.files.internal("fonts/flappy.fnt"));
     }
 
     @Override
@@ -46,6 +48,7 @@ public class GameScreen implements Screen, InputProcessor {
         batch.begin();
         batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         batch.draw(start.getBtn(),start.getX(),start.getY(), start.getW(), start.getH());
+        font.draw(batch,"1234567", 200,200);
         batch.end();
     }
 
@@ -68,18 +71,18 @@ public class GameScreen implements Screen, InputProcessor {
     //обработка нажатия
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
-
-        if (start.isClicked(x,y))
-            isClicked = true;
+//
+//        if (start.isClicked(x,y))
+//            isClicked = true;
         return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if(isClicked){
-            game.setScreen(game.main);
-            isClicked = false;
-        }
+//        if(isClicked){
+//            game.setScreen(game.main);
+//            isClicked = false;
+//        }
         return true;
 
     }

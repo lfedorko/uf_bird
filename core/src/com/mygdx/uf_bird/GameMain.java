@@ -25,6 +25,6 @@ public class GameMain extends Game {
 		main = new MainScreen(this);
 		game = new GameScreen(this);
 
-		setScreen(game);
+		setScreen(main);
 	}
 }

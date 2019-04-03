@@ -15,7 +15,7 @@ public class Bird implements Object{
     private float y;
     private float speed;
     private static final int GROUND = Gdx.graphics.getHeight() / 800 * 100;
-
+    private int score;
 
     public static float getWIDTH() {
         return WIDTH;
@@ -83,10 +83,10 @@ public class Bird implements Object{
         return y;
     }
 
-    public Bird(float x, float y, float speed) {
+    public Bird() {
+        this.x = Gdx.graphics.getWidth() / 2 - WIDTH;
+        this.y = Gdx.graphics.getWidth() / 2 + GROUND;
         this.collisionRectangle = new Rectangle(x, y, WIDTH, HEIGHT);
-        this.x = x;
-        this.y = y;
         this.speed = speed;
         isDead = false;
         gravity = -3;
@@ -95,6 +95,7 @@ public class Bird implements Object{
         birdAtlas = new TextureAtlas(Gdx.files.internal("red.atlas"));
         birdAnimation = new Animation<TextureAtlas.AtlasRegion>(0.1f, birdAtlas.getRegions());
         deadBird = birdAtlas.findRegion("yellow1");
+        score = 0;
     }
 
 
@@ -105,6 +106,11 @@ public class Bird implements Object{
         this.collisionRectangle.setY(y);
     }
 
+    public void setScore()
+    {
+        score +=1;
+        System.out.println(score);
+    }
 
     public void update() {
 
@@ -121,12 +127,12 @@ public class Bird implements Object{
 
         if (!isDead) {
             timePassed += Gdx.graphics.getDeltaTime();
-            batch.draw(birdAnimation.getKeyFrame(timePassed, true), x, y, WIDTH,HEIGHT);
+            batch.draw(birdAnimation.getKeyFrame(timePassed, true),collisionRectangle.getX(), getColissionRectangle().getY());
         }
         else
         {
-            setRotate(270);
-            batch.draw(deadBird, x, y,WIDTH,HEIGHT,WIDTH,HEIGHT,1,1,rotate);
+//            setRotate(270);
+            batch.draw(deadBird, collisionRectangle.getX(), getColissionRectangle().getY(),WIDTH,HEIGHT,WIDTH,HEIGHT,1,1,rotate);
             timePassed = 0;
 
         }
