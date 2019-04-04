@@ -19,7 +19,7 @@ public class PipeCollector {
     private int score;
 
     public PipeCollector(){
-        passed = Gdx.audio.newSound(Gdx.files.internal("point.ogg"));
+        passed = Gdx.audio.newSound(Gdx.files.internal("music/point.ogg"));
         for (int i = 0; i < AMOUNT_OF_PIPES; i++) {
             Pipe pipe = new Pipe();
             pipe.setX(Gdx.graphics.getWidth() + i * BEETWEEN_PAIR);
