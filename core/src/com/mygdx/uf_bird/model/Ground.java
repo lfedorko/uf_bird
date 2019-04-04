@@ -9,7 +9,7 @@ import java.util.Random;
 import static sun.misc.Version.print;
 
 public class Ground implements Object {
-    private static final int GROUND = Gdx.graphics.getHeight() / 800 * 110;
+    private static final int GROUND = Gdx.graphics.getHeight() / 800 * 100;
     private static final int WIDTH_GROUND  = 24;
     private float firstPos;
     private float secondPos;
@@ -38,12 +38,12 @@ public class Ground implements Object {
 
 
     public void update() {
-        firstPos -= 4;
-        secondPos -= 4;
-        System.out.println(firstPos + " " + secondPos);
-        if (firstPos == -Gdx.graphics.getWidth())
+        firstPos -= 2;
+        secondPos -= 2;
+        //System.out.println(firstPos + " " + secondPos);
+        if (firstPos < -Gdx.graphics.getWidth())
             firstPos = Gdx.graphics.getWidth();
-        else if (secondPos == -Gdx.graphics.getWidth())
+        else if (secondPos < -Gdx.graphics.getWidth())
             secondPos = Gdx.graphics.getWidth();
 
     }

@@ -55,7 +55,7 @@ public class MainScreen implements Screen {
         bird = new Bird();
         pipes = new PipeCollector();
         render = new ShapeRenderer();
-//        font = new BitmapFont(Gdx.files.internal("fonts/flappy.fnt"));
+        font = new BitmapFont(Gdx.files.internal("fonts/flappy.fnt"));
 
     }
     // время между кадрами в секунду
@@ -98,22 +98,22 @@ public class MainScreen implements Screen {
 
     private void renderDebug()
     {
-//        Rectangle birdCircle = bird.getColissionRectangle();
-//        render.begin(ShapeRenderer.ShapeType.Line);
-//        render.rect(birdCircle.x, birdCircle.y, birdCircle.width, birdCircle.height);
+        Rectangle birdCircle = bird.getColissionRectangle();
+        render.begin(ShapeRenderer.ShapeType.Line);
+        render.rect(birdCircle.x, birdCircle.y, birdCircle.width, birdCircle.height);
 
-//        for (Pipe pipe : pipes.getPipes())
-//        {
-//
-//            Rectangle bottomPipe = pipe.getBotomPipe();
-//            Rectangle topPipe = pipe.getTopPipe();
-//           render.rect(bottomPipe.x, bottomPipe.getY(),bottomPipe.getWidth(),bottomPipe.getHeight());
-//            render.rect(topPipe.x, topPipe.getY(), topPipe.getWidth(), topPipe.getHeight());
-//        }
-//        render.end();
+        for (Pipe pipe : pipes.getPipes())
+        {
+
+            Rectangle bottomPipe = pipe.getBotomPipe();
+            Rectangle topPipe = pipe.getTopPipe();
+           render.rect(bottomPipe.x, bottomPipe.getY(),bottomPipe.getWidth(),bottomPipe.getHeight());
+            render.rect(topPipe.x, topPipe.getY(), topPipe.getWidth(), topPipe.getHeight());
+        }
+        render.end();
         batch.begin();
 
-        batch.draw(bgSprite, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+//        batch.draw(bgSprite, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         for (Pipe pipe : pipes.getPipes())
         {
             Rectangle botomPipe = pipe.getBotomPipe();
@@ -125,7 +125,7 @@ public class MainScreen implements Screen {
             batch.draw(topPipeS, botomPipe.x, botomPipe.y + botomPipe.height - 24, botomPipe.width, 25);
             batch.draw(floorSprite, ground.getFirstPos(), 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
             batch.draw(floorSprite, ground.getSecondPos(), 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 800 * 100);
-//            font.draw(batch, Integer.toString(pipes.getScore()),10 ,Gdx.graphics.getHeight() - 10);
+            font.draw(batch, Integer.toString(pipes.getScore()),10 ,Gdx.graphics.getHeight() - 10);
         }
         bird.draw(batch);
         batch.end();
@@ -142,7 +142,7 @@ public class MainScreen implements Screen {
             ground.update();
             if (Gdx.input.justTouched())
                 bird.jump();
-            if (pipes.сheckOverlap(bird.getColissionRectangle()))
+            if (pipes.сheckOverlap(bird.getColissionRectangle()) || pipes.checkMinTube(bird.getColissionRectangle()))
             {
                 bird.setDead(true);
             }

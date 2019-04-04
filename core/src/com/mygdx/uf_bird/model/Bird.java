@@ -5,18 +5,20 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.awt.HeadlessException;
 import java.util.SortedMap;
 
 
 public class Bird implements Object{
 
-    private final Rectangle collisionRectangle;
+    private Rectangle collisionRectangle;
     private float x;
     private float y;
     private float speed;
     private static final int GROUND = Gdx.graphics.getHeight() / 800 * 100;
+    private static final int TUBE_MIN = Gdx.graphics.getHeight() / 800 * 300 ;
     private int score;
-    private boolean setClockwise;
+
 
     public static float getWIDTH() {
         return WIDTH;
@@ -26,8 +28,8 @@ public class Bird implements Object{
         return HEIGHT;
     }
 
-    private final static float WIDTH =  34;
-    private final static float HEIGHT = 24;
+    private final static float WIDTH =  Gdx.graphics.getWidth() / 10 ;
+    private final static float HEIGHT = Gdx.graphics.getWidth() / 10 ;
     private TextureAtlas birdAtlas;
     private Animation<TextureAtlas.AtlasRegion> birdAnimation;
     private TextureRegion deadBird;
@@ -36,6 +38,8 @@ public class Bird implements Object{
     private float gravity;
     private boolean isDead;
     private Sound flying;
+    private Sound died;
+
 
     public void setClockwise(boolean clockwise) {
         isClockwise = clockwise;
@@ -57,7 +61,7 @@ public class Bird implements Object{
 
     public void setDead(boolean dead) {
         isDead = dead;
-        rotate = 270;
+        died.play();
         setY(y - HEIGHT);
     }
 
@@ -86,13 +90,14 @@ public class Bird implements Object{
 
     public Bird() {
         this.x = Gdx.graphics.getWidth() / 2 - WIDTH;
-        this.y = Gdx.graphics.getWidth() / 2 ;
+        this.y = Gdx.graphics.getHeight() / 2 ;
         this.collisionRectangle = new Rectangle(x, y, WIDTH, HEIGHT);
         this.speed = speed;
         isDead = false;
-        gravity = -3;
+        gravity = -1;
         rotate = 0;
         flying = Gdx.audio.newSound(Gdx.files.internal("music/wing.ogg"));//
+        died = Gdx.audio.newSound(Gdx.files.internal("music/die.ogg"));//
         birdAtlas = new TextureAtlas(Gdx.files.internal("red.atlas"));
         birdAnimation = new Animation<TextureAtlas.AtlasRegion>(0.1f, birdAtlas.getRegions());
         deadBird = birdAtlas.findRegion("yellow1");
@@ -110,7 +115,7 @@ public class Bird implements Object{
 
     public void setScore()
     {
-        score +=1;
+        score +=2;
         System.out.println(score);
     }
 
@@ -120,6 +125,7 @@ public class Bird implements Object{
             setY(y + gravity);
         if (y <= GROUND)
         {
+         //   System.out.println("Ground" + GROUND +" Bird" + y);
             setY(GROUND );
         }
 
@@ -129,21 +135,25 @@ public class Bird implements Object{
 
         if (!isDead) {
             timePassed += Gdx.graphics.getDeltaTime();
-            batch.draw(birdAnimation.getKeyFrame(timePassed, true), getColissionRectangle().getX(), getColissionRectangle().getY(),WIDTH,HEIGHT,WIDTH,HEIGHT,Gdx.graphics.getWidth()/400,Gdx.graphics.getHeight()/800,0, true);
+            batch.draw(birdAnimation.getKeyFrame(timePassed, true),collisionRectangle.getX(),collisionRectangle.getY(),WIDTH,HEIGHT,WIDTH, HEIGHT,1f,1f,rotate );
+
         }
         else
         {
-//            setRotate(270);
-            batch.draw(deadBird, collisionRectangle.getX(), getColissionRectangle().getY(),WIDTH,HEIGHT,WIDTH,HEIGHT,1,1,rotate,isClockwise);
+            if (rotate > -90) {
+                rotate -= 1;
+                speed +=1;
+            }
+            collisionRectangle.set(x, y - HEIGHT, WIDTH,HEIGHT);
+            batch.draw(deadBird,collisionRectangle.getX(),collisionRectangle.getY(), WIDTH,HEIGHT,WIDTH, HEIGHT,1f,1f,rotate);
+            System.out.println(collisionRectangle.getX() +" "+ collisionRectangle.getY());
             timePassed = 0;
 
         }
     }
-    public void setAnimation(){
-    }
+
 
     public void jump(){
-        //setRotate(45);
         setClockwise(true);
         setY(y + 100);
         flying.play();

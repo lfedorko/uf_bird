@@ -13,8 +13,8 @@ base
 base_pipe
   rotate: false
   xy: 0, 112
-  size: 52, 143
-  orig: 52, 143
+  size: 52, 142
+  orig: 52, 142
   offset: 0, 0
   index: -1
 bg1
@@ -24,8 +24,8 @@ bg1
   orig: 288, 360
   offset: 0, 0
   index: -1
-blue1
-  rotate: false
+dead
+  rotate: true
   xy: 0, 472
   size: 34, 24
   orig: 34, 24
@@ -55,8 +55,8 @@ blue4
 cap
   rotate: false
   xy: 136, 472
-  size: 52, 25
-  orig: 52, 25
+  size: 51, 25
+  orig: 51, 25
   offset: 0, 0
   index: -1
 red1

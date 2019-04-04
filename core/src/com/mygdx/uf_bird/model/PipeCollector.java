@@ -64,7 +64,18 @@ public class PipeCollector {
         for (Pipe pipe: pipes)
         {
             if (rect.overlaps(pipe.getBotomPipe()) || (rect.overlaps(pipe.getTopPipe())))
+            {
                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkMinTube(Rectangle rect)
+    {
+        Pipe firstPipe = pipes.first();
+        if (rect.getY() < firstPipe.getGap()){
+            return true;
         }
         return false;
     }
