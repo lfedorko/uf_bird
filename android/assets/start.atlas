@@ -1,0 +1,54 @@
+start.png
+size: 487, 57
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Banner
+  rotate: false
+  xy: 0, 0
+  size: 89, 24
+  orig: 89, 24
+  offset: 0, 0
+  index: -1
+flappy-00003
+  rotate: false
+  xy: 89, 0
+  size: 113, 57
+  orig: 113, 57
+  offset: 0, 0
+  index: -1
+game
+  rotate: false
+  xy: 202, 0
+  size: 49, 21
+  orig: 49, 21
+  offset: 0, 0
+  index: -1
+ground
+  rotate: false
+  xy: 251, 0
+  size: 168, 56
+  orig: 168, 56
+  offset: 0, 0
+  index: -1
+over
+  rotate: false
+  xy: 419, 0
+  size: 42, 21
+  orig: 42, 21
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 461, 0
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
+start
+  rotate: false
+  xy: 474, 0
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1

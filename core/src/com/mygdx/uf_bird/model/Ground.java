@@ -1,54 +1,43 @@
 package com.mygdx.uf_bird.model;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.uf_bird.view.GameView;
 
-import java.util.Random;
 
-import static sun.misc.Version.print;
-
-public class Ground implements Object {
+public class Ground implements ObjectToDraw {
     private static final int GROUND = Gdx.graphics.getHeight() / 800 * 100;
+    private TextureAtlas atlas;
     private static final int WIDTH_GROUND  = 24;
     private float firstPos;
     private float secondPos;
+    private TextureRegion ground;
+    private TextureRegion bg;
 
-    public float getFirstPos() {
-        return firstPos;
-    }
-
-    public void setFirstPos(float firstPos) {
-        this.firstPos = firstPos;
-    }
-
-    public float getSecondPos() {
-        return secondPos;
-    }
-
-    public void setSecondPos(float secondPos) {
-        this.secondPos = secondPos;
-    }
 
     public Ground(){
         firstPos = 0;
         secondPos = Gdx.graphics.getWidth();
+        atlas = new TextureAtlas(Gdx.files.internal("test.atlas"));
+        ground = atlas.findRegion("ground");
+        bg = atlas.findRegion("bg");
+
     }
-
-
 
     public void update() {
-        firstPos -= 2;
-        secondPos -= 2;
-        //System.out.println(firstPos + " " + secondPos);
-        if (firstPos < -Gdx.graphics.getWidth())
-            firstPos = Gdx.graphics.getWidth();
-        else if (secondPos < -Gdx.graphics.getWidth())
+        firstPos -= 1;
+        secondPos -= 1;
+        if (firstPos == 0)
             secondPos = Gdx.graphics.getWidth();
+        else if (secondPos == 0)
+            firstPos = Gdx.graphics.getWidth();
 
     }
-//
-        public void draw() {
+
+    public void draw() {
+            GameView.batch.draw(bg, 0,0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            GameView.batch.draw(ground, firstPos,0, Gdx.graphics.getWidth(), GROUND);
+            GameView.batch.draw(ground, secondPos,0, Gdx.graphics.getWidth(), GROUND);
 
         }
 

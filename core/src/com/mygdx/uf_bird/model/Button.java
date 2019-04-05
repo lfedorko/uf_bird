@@ -1,10 +1,9 @@
 package com.mygdx.uf_bird.model;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.uf_bird.view.GameView;
 
-import java.awt.TextArea;
-
-public class Button {
+public class Button implements ObjectToDraw{
 
     private Texture btn;
     private int x;
@@ -48,4 +47,13 @@ public class Button {
     }
 
 
+    @Override
+    public void draw() {
+        GameView.batch.draw(btn,x,y,w,h);
+    }
+
+    @Override
+    public void update() {
+
+    }
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
 
-public class Pipe implements Object{
+public class Pipe{
 
 
     private static final int PIPE_WIDTH = Gdx.graphics.getWidth() / 400 * 52 * 2;
@@ -22,7 +22,6 @@ public class Pipe implements Object{
     Random random = new Random();
     private  float speed = 3;
     private Sound flying;
-
     private boolean passed;
 
 
@@ -87,16 +86,13 @@ public class Pipe implements Object{
     }
 
 
-
-    public static int getGAP() {
-        return GAP;
+    public boolean isPassed() {
+        return passed;
     }
 
     public void update() {
-        if (passed)
         setX(x - speed);
     }
-//
-//    public void draw(){}
+
 
 }
