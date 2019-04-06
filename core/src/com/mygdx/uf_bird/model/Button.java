@@ -53,7 +53,8 @@ public class Button implements ObjectToDraw{
     }
 
     @Override
-    public void update() {
+    public void dispose(){
 
+        btn.dispose();
     }
 }

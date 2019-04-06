@@ -2,7 +2,6 @@ package com.mygdx.uf_bird.model;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
@@ -20,23 +19,10 @@ public class Pipe{
     private float y;
     private int bottomH;
     Random random = new Random();
-    private  float speed = 3;
-    private Sound flying;
+    private  float speed = Gdx.graphics.getHeight() / 180;
     private boolean passed;
 
 
-    public int getBottomH() {
-        return bottomH - GROUND;
-    }
-    public void setBottomH(int bottomH) {
-        this.bottomH = bottomH;
-    }
-    public int getGap() {
-        return GAP;
-    }
-    public static int getGround() {
-        return GROUND;
-    }
     public Rectangle getBotomPipe() {
         return collisionBottomPipe;
     }
@@ -64,9 +50,8 @@ public class Pipe{
 
     public Pipe(){
             bottomH = generateHeight();
-            collisionBottomPipe = new Rectangle(Gdx.graphics.getWidth() * 2, GROUND , PIPE_WIDTH, bottomH - GROUND);
+            collisionBottomPipe = new Rectangle(Gdx.graphics.getWidth() * 2 , GROUND , PIPE_WIDTH, bottomH - GROUND);
             collisionTopPipe = new Rectangle(Gdx.graphics.getWidth() * 2, bottomH + SPACE + GROUND, PIPE_WIDTH, (Gdx.graphics.getHeight() - (SPACE + bottomH)));
-//            System.out.println(collisionBottomPipe.getX()+ " "+ collisionBottomPipe.getY());
             passed = false;
     }
 
@@ -81,7 +66,7 @@ public class Pipe{
 
     public void setX(float x) {
         this.x = x;
-        collisionTopPipe.setX(x - (PIPE_WIDTH / 2));
+        collisionTopPipe.setX(x - PIPE_WIDTH / 2);
         collisionBottomPipe.setX(x - PIPE_WIDTH / 2);
     }
 

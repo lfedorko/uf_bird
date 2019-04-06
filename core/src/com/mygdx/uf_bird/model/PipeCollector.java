@@ -1,8 +1,10 @@
 package com.mygdx.uf_bird.model;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.uf_bird.view.GameView;
@@ -16,18 +18,27 @@ public class PipeCollector  implements ObjectToDraw{
     private TextureAtlas texture;
     private Array<Pipe> pipes = new Array<Pipe>();
     private int score;
-    private SpriteBatch batch;
-    private  TextureRegion floorSprite;
     private  TextureRegion base;
     private  TextureRegion topPipeS;
+    private Sound coin;
 
     public PipeCollector(){
         texture = new TextureAtlas(Gdx.files.internal("flappy.txt"));
-        floorSprite = texture.findRegion("base");
         topPipeS = texture.findRegion("cap");
         base = texture.findRegion("base_pipe");
-        batch = new SpriteBatch();
+        coin = Gdx.audio.newSound(Gdx.files.internal("music/point.ogg"));
+        for (int i = 0; i < AMOUNT_OF_PIPES; i++) {
+            Pipe pipe = new Pipe();
+            pipe.setX(Gdx.graphics.getWidth() + i * BEETWEEN_PAIR);
+            pipes.add(pipe);
+        }
+        score = 0;
+    }
 
+    public void reset(){
+        for (int i = 0; i < AMOUNT_OF_PIPES; i++) {
+            pipes.pop();
+        }
         for (int i = 0; i < AMOUNT_OF_PIPES; i++) {
             Pipe pipe = new Pipe();
             pipe.setX(Gdx.graphics.getWidth() + i * BEETWEEN_PAIR);
@@ -81,9 +92,9 @@ public class PipeCollector  implements ObjectToDraw{
    public boolean сheckOverlap(Rectangle rect){
         for (Pipe pipe: pipes)
         {
-            if (rect.overlaps(pipe.getBotomPipe()) || (rect.overlaps(pipe.getTopPipe())))
+            if (rect.overlaps(pipe.getBotomPipe()) || (rect.overlaps(pipe.getTopPipe())) || rect.y >= Gdx.graphics.getHeight())
             {
-               return true;
+                return true;
             }
         }
         return false;
@@ -94,18 +105,17 @@ public class PipeCollector  implements ObjectToDraw{
 		    if ((pipe.getX() + pipe.getPipeWidth() / 2 < bird.getX()) && !pipe.isPassed()) {
 		        System.out.println(pipe.getX() + pipe.getPipeWidth() / 2  +" "+ bird.getX());
                 pipe.setPassed(true);
+                coin.play();
                 score++;
             }
         }
 	}
 
-    public boolean checkMinTube(Rectangle rect)
-    {
-        Pipe firstPipe = pipes.first();
-        if (rect.getY() < firstPipe.getGap()){
-            return true;
-        }
-        return false;
+    public void dispose() {
+        texture.dispose();
+        coin.dispose();
     }
+
+
 }
 

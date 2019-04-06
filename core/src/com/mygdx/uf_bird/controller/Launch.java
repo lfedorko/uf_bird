@@ -61,7 +61,8 @@ public class Launch implements Screen, InputProcessor {
     public void show() {
         world = new World();
         renderer = new GameView(world);
-        controller = new GameController(world);
+        controller = controller.getInstance(world);
+
         Gdx.input.setInputProcessor(this);
 
     }
@@ -90,12 +91,14 @@ public class Launch implements Screen, InputProcessor {
 
     @Override
     public void hide() {
-        world.setState("START");
+        dispose();
 
     }
 
     @Override
     public void dispose() {
-
+        Gdx.input.setInputProcessor(null);
+        renderer.dispose();
+        world.dispose();
     }
 }
